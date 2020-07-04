@@ -24,7 +24,7 @@ Außerdem findet sich hier ein Link zu allen Fächern:
 
 #### Beispiel
 
-![](S:\web\moodle\Moodle-3d\image-20200704104949996.png)
+![Klassenkurs](images/klassenkurs.png)
 
 ### Ebene 2: Fachkurse
 
@@ -32,7 +32,7 @@ Auf Ebene 2 finden sich die Fachkurse. Hier findet sich alles, was für die **Kl
 
 #### Beispiel
 
-![image-20200704105121267](S:\web\moodle\Moodle-3d\image-20200704105121267.png)
+![Fachkurs](images/fachkurs.png)
 
 ### Ebene 3: Inhaltskurse
 
@@ -40,7 +40,7 @@ Auf Ebene 3 finden sich Inhaltskurse. Die Inhaltskurse sind Kurse zu bestimmten 
 
 #### Beispiel
 
-![image-20200704105324586](S:\web\moodle\Moodle-3d\image-20200704105324586.png)
+![Fachkurs](images/inhaltskurs.png)
 
 ## FAQ
 
