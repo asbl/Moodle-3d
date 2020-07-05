@@ -66,72 +66,10 @@ Auf Ebene 3 finden sich Inhaltskurse. Die Inhaltskurse sind Kurse zu bestimmten 
 
   * **Die Kurse anlegen**: Klassenkurse und Fachkurse können per **csv-Datei** basierend auf einem Template angleegt werden. Auf diese Weise kann hier bereits eine einheitliche Struktur vorgegeben werden.
 
-## Hilfreiche Module
+## Technik
 
-Welche Module sind hilfreich, um das Konzept umzusetzen?
+  * https://hackmd.io/yLTdguHTTxe-zyMtVWTdOA?view
 
-* **Subcourse**: Damit können Bewertungen aus Unterkursen in die Elternkurse übernommen werden. https://moodle.org/plugins/mod_subcourse
+## @ TODO
 
-* **Course Templates**: Damit können Templates zur Erstellung von Inhaltskursen vorgegeben werden. https://moodle.org/plugins/local_course_templates
-
-* **Filtered Course Lists**: Damit können Backlinks von den Inhaltskursen zu den oberen Ebenen realisiert werden. Hier können **Meine Fachkurse** oder **Meine Klassenkurse** angezeigt werden. Mit Javascript kann darüber auch der Breadcrumb überschrieben werden
-
-Das Konzept ist unter CC0-Lizenz verfügbar, für Bilder gelten eigene Lizenzen: https://creativecommons.org/publicdomain/zero/1.0/deed.de
-
-## Hacks
-
-### Backlinks
-
-  * Für den folgenden Hack müssen folgende Bedingungen gegeben sein:
-  * Klassenkurse liegen im Kursbereich Klassenkurse.
-  * Fachkurse liegen im Kursbereich Fachkurse.
-  * Inhaltskurse liegen im Kursbereich Inhaltskurse.
-  * In der Webseite-Administration ist die Einstellung "Meine Kursbereiche anzeigen" definiert
-  * Auf der Kursseite wird ein Block "Meine Kurse" angezeigt
-
-Mit folgendem Javascript können jetzt Backlinks im Breadcrumb erstellt werden, der Pfad wird entsprechend geändert. Füge dieses Javascript an irgendeiner Stelle mit <script></script>-Tags hinzu, in denen du Javascript verwenden darfst.
-
-```javascript
-$(window).on("load", function () {
-  $("#page-navbar").each(function () {
-    // Setze diese Variablen entsprechend
-    var kursbereich_inhalte = 'Inhaltskurse'; // In welchem Kursbereich finden sich die Inhaltskurse?
-    var kursbereich_faecher = 'Fachkurse'; // In welchem Kursbereich finden sich die Fachkurse?
-    var kursbereich_klassen = 'Klassenkurse'; // In welchem Kursbereich finden sich die Inhaltskurse?
-
-    function replace_breadcrumb(breadcrumb_text, type) {
-      if ($("#page-navbar").is(':contains("' + breadcrumb_text + '")')) {
-        if (type == "inhalt") {
-          var breadcrumb_course = $(".breadcrumb-item:contains('" + breadcrumb_text + "')").next().text().trim();
-          var cls_text = "Klasse " + $('.block_course_list li a:contains("' + breadcrumb_course + '")').text().split("-")[1].trim();
-          var cls = $('.block_course_list li a:contains("' + cls_text + '")');
-          var course = $('.block_course_list li a:contains("' + breadcrumb_course + '")');
-          $(".breadcrumb-item:contains('" + breadcrumb_text + "')").each(function() {
-            $(this).next().replaceWith(function () {
-              course = course.wrap('<li class="breadcrumb-item"></li>').parent()
-              return course;
-            });
-            $(this).replaceWith(function () {
-              cls = cls.wrap('<li class="breadcrumb-item"></li>').parent()
-              return cls;
-            });
-          });
-        }
-        else if (type == "fach") {
-          var breadcrumb_class = "Klasse "+$(".breadcrumb-item:contains('" + breadcrumb_text + "')").next().text().split("-")[1].trim();
-          var cls  = $('.block_course_list li a:contains("' + breadcrumb_class + '")');
-          $(".breadcrumb-item:contains('" + breadcrumb_text + "')").replaceWith(function () {
-            cls = cls.wrap('<li class="breadcrumb-item"></li>').parent()
-            return cls;
-          });
-        }
-      }
-    }
-
-    replace_breadcrumb(kursbereich_inhalte, "inhalt");
-    replace_breadcrumb(kursbereich_faecher, "fach");
-
-  });
-
-});
-```
+  * Eine Plattform zur gemeinsamen Nutzung von IM³-Kursen schaffen
